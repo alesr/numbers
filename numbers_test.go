@@ -127,3 +127,10 @@ func TestNthFibonacci(t *testing.T) {
 		}
 	}
 }
+
+// BenchmarkNthFibonacci benchmark NthFibonacci function.
+func BenchmarkNthFibonacci(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		_ = NthFibonacci(10000)
+	}
+}
