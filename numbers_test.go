@@ -235,3 +235,13 @@ func TestNthEven(t *testing.T) {
 		}
 	}
 }
+
+// BenchmarkNthEven benchmark NthEven function.
+func BenchmarkNthEven(b *testing.B) {
+	for i := 0; i <= b.N; i++ {
+		_, err := NthEven(100000)
+		if err != nil {
+			b.Error(err)
+		}
+	}
+}
