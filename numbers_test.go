@@ -71,3 +71,29 @@ func BenchmarkIsPrime(b *testing.B) {
 		_ = IsPrime(1728459)
 	}
 }
+
+// TestFibonacciGen unit test FibonacciGen function.
+func TestFibonacciGen(t *testing.T) {
+	testCases := []struct {
+		input, expected int
+	}{
+		{1, 0},
+		{2, 1},
+		{3, 1},
+		{4, 2},
+		{5, 3},
+		{8, 13},
+		{10, 34},
+		{12, 89},
+	}
+	for _, test := range testCases {
+		var observed int
+		c := FibonacciGen()
+		for n := 0; n < test.input; n++ {
+			observed = <-c
+		}
+		if observed != test.expected {
+			t.Errorf("for input '%d', expected '%d', got '%d'", test.input, test.expected, observed)
+		}
+	}
+}
