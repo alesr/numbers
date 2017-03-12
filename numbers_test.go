@@ -64,3 +64,10 @@ func TestIsPrime(t *testing.T) {
 		}
 	}
 }
+
+// BenchmarkIsPrime benchmark IsPrime function.
+func BenchmarkIsPrime(b *testing.B) {
+	for i := 0; i <= b.N; i++ {
+		_ = IsPrime(1728459)
+	}
+}
