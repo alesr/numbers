@@ -272,3 +272,13 @@ func TestNthOdd(t *testing.T) {
 		}
 	}
 }
+
+// BenchmarkNthOdd benchmark NthOdd function.
+func BenchmarkNthOdd(b *testing.B) {
+	for i := 0; i <= b.N; i++ {
+		_, err := NthOdd(100000)
+		if err != nil {
+			b.Error(err)
+		}
+	}
+}
