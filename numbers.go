@@ -92,3 +92,12 @@ func NthEven(pos int) (int, error) {
 	even, _ := EvenNumbers(0, (pos*2)-1)
 	return even[len(even)-1], nil
 }
+
+// NthOdd returns the nth odd number for a given position.
+func NthOdd(pos int) (int, error) {
+	if pos < 0 {
+		return 0, fmt.Errorf("input must be a positive number. received '%d'", pos)
+	}
+	odd, _ := OddNumbers(0, (pos*2)-1)
+	return odd[len(odd)-1], nil
+}
