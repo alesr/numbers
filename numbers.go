@@ -101,3 +101,20 @@ func NthOdd(pos int) (int, error) {
 	odd, _ := OddNumbers(0, (pos*2)-1)
 	return odd[len(odd)-1], nil
 }
+
+// SliceByParity iterates over each n from A to B and
+// add n to a slice of odd or even numbers.
+func SliceByParity(a, b int) (even, odd []int, err error) {
+	if b < a {
+		return nil, nil, fmt.Errorf("a must be greater than b. received a '%d' and b '%d'", a, b)
+	}
+	for a <= b {
+		if a%2 == 0 {
+			even = append(even, a)
+		} else {
+			odd = append(odd, a)
+		}
+		a++
+	}
+	return even, odd, nil
+}
