@@ -33,3 +33,13 @@ func TestFactorsList(t *testing.T) {
 		}
 	}
 }
+
+// BenchmarkFactorList benchmark FactorsList function.
+func BenchmarkFactorList(b *testing.B) {
+	for i := 0; i <= b.N; i++ {
+		_, err := FactorsList(1000)
+		if err != nil {
+			b.Error(err)
+		}
+	}
+}
