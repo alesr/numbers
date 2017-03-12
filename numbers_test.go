@@ -43,3 +43,24 @@ func BenchmarkFactorList(b *testing.B) {
 		}
 	}
 }
+
+// TestIsPrime unit test IsPrime function.
+func TestIsPrime(t *testing.T) {
+	testCases := []struct {
+		input    int
+		expected bool
+	}{
+		{-5, false},
+		{0, false},
+		{2, true},
+		{6, false},
+		{13, true},
+	}
+	for _, test := range testCases {
+		observed := IsPrime(test.input)
+		if observed != test.expected {
+			t.Errorf("for input '%d', expected '%t', got '%t'",
+				test.input, test.expected, observed)
+		}
+	}
+}
