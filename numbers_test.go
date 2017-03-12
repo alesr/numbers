@@ -97,3 +97,13 @@ func TestFibonacciGen(t *testing.T) {
 		}
 	}
 }
+
+// BenchmarkFibonacciGen benchmark FibonacciGen function.
+func BenchmarkFibonacciGen(b *testing.B) {
+	for i := 0; i <= b.N; i++ {
+		c := FibonacciGen()
+		for n := 0; n < 10000; n++ {
+			_ = <-c
+		}
+	}
+}
