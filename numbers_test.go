@@ -245,3 +245,30 @@ func BenchmarkNthEven(b *testing.B) {
 		}
 	}
 }
+
+// TestNthOdd unit test NthOdd function.
+func TestNthOdd(t *testing.T) {
+	testCases := []struct {
+		input, expected int
+		err             error
+	}{
+		{-1, 0, errors.New("input must be a positive number. received '-1'")},
+		{-2, 0, errors.New("input must be a positive number. received '-2'")},
+		{1, 1, nil},
+		{2, 3, nil},
+		{10, 19, nil},
+	}
+	for _, test := range testCases {
+		observed, err := NthOdd(test.input)
+		if err != nil {
+			if err.Error() != test.err.Error() {
+				t.Errorf("for input '%d', expected '%s', got '%s'",
+					test.input, test.err.Error(), err.Error())
+			}
+		}
+		if !reflect.DeepEqual(observed, test.expected) {
+			t.Errorf("for input '%d', expected '%v', got '%v'",
+				test.input, test.expected, observed)
+		}
+	}
+}
