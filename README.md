@@ -1,4 +1,4 @@
-# numbers
+# numbers [![Build Status](https://travis-ci.org/alesr/numbers.svg?branch=master)](https://travis-ci.org/alesr/numbers)
 GO package numbers implements useful functions to work with prime numbers, Fibonacci, and parity.
 
 ### PACKAGE DOCUMENTATION
