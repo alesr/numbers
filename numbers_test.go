@@ -198,3 +198,13 @@ func TestOddNumbers(t *testing.T) {
 		}
 	}
 }
+
+// BenchmarkOddNumbers benchmark OddNumbers function.
+func BenchmarkOddNumbers(b *testing.B) {
+	for i := 0; i <= b.N; i++ {
+		_, err := OddNumbers(1, 100000)
+		if err != nil {
+			b.Error(err)
+		}
+	}
+}
