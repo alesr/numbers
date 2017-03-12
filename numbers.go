@@ -74,3 +74,12 @@ func EvenNumbers(a, b int) ([]int, error) {
 	}
 	return even, nil
 }
+
+// OddNumbers returns a list of even numbers from A to B.
+func OddNumbers(a, b int) ([]int, error) {
+	_, odd, err := SliceByParity(a, b)
+	if err != nil {
+		return nil, err
+	}
+	return odd, nil
+}
