@@ -161,3 +161,13 @@ func TestEvenNumbers(t *testing.T) {
 		}
 	}
 }
+
+// BenchmarkEvenNumbers benchmark EvenNumbers function.
+func BenchmarkEvenNumbers(b *testing.B) {
+	for i := 0; i <= b.N; i++ {
+		_, err := EvenNumbers(1, 100000)
+		if err != nil {
+			b.Error(err)
+		}
+	}
+}
