@@ -134,3 +134,30 @@ func BenchmarkNthFibonacci(b *testing.B) {
 		_ = NthFibonacci(10000)
 	}
 }
+
+// TestEvenNumbers unit test EvenNumbers function.
+func TestEvenNumbers(t *testing.T) {
+	testCases := []struct {
+		inputA, inputB int
+		expected       []int
+		err            error
+	}{
+		{1, 1, []int(nil), nil},
+		{1, 3, []int{2}, nil},
+		{4, 8, []int{4, 6, 8}, nil},
+		{-4, 8, []int{-4, -2, 0, 2, 4, 6, 8}, nil},
+		{-1, -2, []int(nil), errors.New("a must be greater than b. received a '-1' and b '-2'")},
+	}
+	for _, test := range testCases {
+		observed, err := EvenNumbers(test.inputA, test.inputB)
+		if err != nil {
+			if err.Error() != test.err.Error() {
+				t.Error(err)
+			}
+		}
+		if !reflect.DeepEqual(observed, test.expected) {
+			t.Errorf("for a '%d' and b '%d', expected '%v', got '%v'",
+				test.inputA, test.inputB, test.expected, observed)
+		}
+	}
+}
