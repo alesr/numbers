@@ -282,3 +282,30 @@ func BenchmarkNthOdd(b *testing.B) {
 		}
 	}
 }
+
+// TestSliceByParity unit test SliceByParity  function.
+func TestSliceByParity(t *testing.T) {
+	testCases := []struct {
+		inputA, inputB            int
+		expectedEven, expectedOdd []int
+	}{
+		{1, 1, []int(nil), []int{1}},
+		{1, 3, []int{2}, []int{1, 3}},
+		{4, 8, []int{4, 6, 8}, []int{5, 7}},
+		{-4, 8, []int{-4, -2, 0, 2, 4, 6, 8}, []int{-3, -1, 1, 3, 5, 7}},
+	}
+	for _, test := range testCases {
+		observedEven, observedOdd, err := SliceByParity(test.inputA, test.inputB)
+		if err != nil {
+			t.Error(err)
+		}
+		if !reflect.DeepEqual(observedEven, test.expectedEven) {
+			t.Errorf("for a '%d' and b '%d', expected even '%v', got '%v'",
+				test.inputA, test.inputB, test.expectedEven, observedEven)
+		}
+		if !reflect.DeepEqual(observedOdd, test.expectedOdd) {
+			t.Errorf("for a '%d' and b '%d', expected odd '%v', got '%v'",
+				test.inputA, test.inputB, test.expectedOdd, observedOdd)
+		}
+	}
+}
