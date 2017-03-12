@@ -44,3 +44,14 @@ func IsPrime(n int) bool {
 	}
 	return true
 }
+
+// FibonacciGen emits an infinite stream of Fibonacci values.
+func FibonacciGen() chan int {
+	c := make(chan int)
+	go func() {
+		for i, j := 0, 1; ; i, j = i+j, i {
+			c <- i
+		}
+	}()
+	return c
+}
