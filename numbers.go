@@ -83,3 +83,12 @@ func OddNumbers(a, b int) ([]int, error) {
 	}
 	return odd, nil
 }
+
+// NthEven returns the nth even number for a given position.
+func NthEven(pos int) (int, error) {
+	if pos < 0 {
+		return 0, fmt.Errorf("input must be a positive number. received '%d'", pos)
+	}
+	even, _ := EvenNumbers(0, (pos*2)-1)
+	return even[len(even)-1], nil
+}
