@@ -107,3 +107,23 @@ func BenchmarkFibonacciGen(b *testing.B) {
 		}
 	}
 }
+
+// TestNthFibonacci unit test NthFibonacci function.
+func TestNthFibonacci(t *testing.T) {
+	var testCases = []struct {
+		input, expected int
+	}{
+		{1, 1},
+		{5, 5},
+		{7, 13},
+		{10, 55},
+		{19, 4181},
+	}
+	for _, test := range testCases {
+		observed := NthFibonacci(test.input)
+		if observed != test.expected {
+			t.Errorf("for input '%d', expected '%d', got '%d'",
+				test.input, test.expected, observed)
+		}
+	}
+}
