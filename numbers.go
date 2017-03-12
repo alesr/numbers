@@ -65,3 +65,12 @@ func NthFibonacci(pos int) int {
 	}
 	return f[len(f)-1]
 }
+
+// EvenNumbers returns a list of even numbers from A to B.
+func EvenNumbers(a, b int) ([]int, error) {
+	even, _, err := SliceByParity(a, b)
+	if err != nil {
+		return nil, err
+	}
+	return even, nil
+}
