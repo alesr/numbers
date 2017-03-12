@@ -55,3 +55,13 @@ func FibonacciGen() chan int {
 	}()
 	return c
 }
+
+// NthFibonacci returns the nth Fibonacci value for given a int position.
+func NthFibonacci(pos int) int {
+	c := FibonacciGen()
+	f := make([]int, pos)
+	for i := 0; i <= pos; i++ {
+		f = append(f, <-c)
+	}
+	return f[len(f)-1]
+}
