@@ -171,3 +171,30 @@ func BenchmarkEvenNumbers(b *testing.B) {
 		}
 	}
 }
+
+// TestOddNumbers unit test OddNumbers function.
+func TestOddNumbers(t *testing.T) {
+	testCases := []struct {
+		inputA, inputB int
+		expected       []int
+		err            error
+	}{
+		{1, 1, []int{1}, nil},
+		{1, 3, []int{1, 3}, nil},
+		{4, 8, []int{5, 7}, nil},
+		{-4, 8, []int{-3, -1, 1, 3, 5, 7}, nil},
+		{-1, -2, []int(nil), errors.New("a must be greater than b. received a '-1' and b '-2'")},
+	}
+	for _, test := range testCases {
+		observed, err := OddNumbers(test.inputA, test.inputB)
+		if err != nil {
+			if err.Error() != test.err.Error() {
+				t.Error(err)
+			}
+		}
+		if !reflect.DeepEqual(observed, test.expected) {
+			t.Errorf("for a '%d' and b '%d', expected '%v', got '%v'",
+				test.inputA, test.inputB, test.expected, observed)
+		}
+	}
+}
